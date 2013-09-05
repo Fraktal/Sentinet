@@ -48,7 +48,7 @@ class StdOutListener(StreamListener):
 
          else:
             db.tweets.save({"neutral": ":|", "date": date, "tweet": data,
-                            "tweet_text_neutral": status.text, "location_neautral": status.place}) 
+                            "tweet_text_neutral": status.text, "location_neutral": status.place}) 
 
       except ConnectionFailure, error:
           sys.stderr.write("could not connect to MongoDB: %s" % error)
