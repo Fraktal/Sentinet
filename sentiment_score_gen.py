@@ -3,6 +3,8 @@ import json
 import csv
 
 
+csv_file = "mycsv.csv"
+
 
 def scores(afinn, text):
     scores = {}
@@ -21,30 +23,18 @@ def scores(afinn, text):
               #print total_sent
               for word in text.split():
                 if not scores.get(word,0):
-                        no_score = 0
+                        no_score = -0.5
                         final_score = total_sent + no_score
-                        words = ("{}".format(word))
-                        sent_score = ("{}".format(final_score))
                         sentiment_scores = ( "{} {}".format(word,final_score))
-                        print sentiment_scores
+                        #print sentiment_scores
+                        for row in sentiment_scores: 
+                            out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',', quoting=csv.QUOTE_NONE)      
+                            out_csv.writerow(row)
+                            out_csv.close()              
 
-'''
-    # open a file to write (mode "w"), and create a CSV writer object
-    csvfile = file("output.csv", "w")
-    csvwriter = csv.writer(csvfile)
-
-    # add headings to our CSV file
-    row = ["words", "sent_score" ]
-    csvwriter.writerow(row)
-
-    row = [ words, sent_score]
-    csvwriter.writerow(row)
-
-    csvfile.close()                    
-'''
 
 def main():
-    tweet_text = open(sys.argv[1]) #use output.txt for initial testing 
+    tweet_text = open(sys.argv[1]) #use output.txt for first argv for initial testing 
     afinn = open(sys.argv[2]) #use AFINN.txt for second argv
     scores(afinn, tweet_text)
 

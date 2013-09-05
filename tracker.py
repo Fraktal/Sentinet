@@ -31,24 +31,21 @@ class StdOutListener(StreamListener):
       try:
 
          #simplified and readable date for the tweets
-         date = status.created_at.date().strftime("20%y/%m/%d")      
+         date = status.created_at.date().strftime("20%y/%m/%d")  
+         time = status.created_at.time().strftime("%H:%M:%S")#GMT time stored in Mongo    
 
          #jsonpickle defines complex Python model objects and turns the objects into JSON 
          data = json.loads(jsonpickle.encode(status))
-       
+
          #store the whole tweet object by emoticon
          if re.search('(:\))', status.text):
-            db.tweets.save({"smiley": ":)", "date": date, "tweet": data, 
+            db.tweets.save({"smiley": ":)", "time" time, "date": date, "tweet": data, 
                             "tweet_text_smiley": status.text, "location_smiley": status.place})
             
 
-         elif re.search('(:\()', status.text):
-            db.tweets.save({"sad": ":(", "date": date, "tweet": data,
-                            "tweet_text_sad": status.text, "location_sad": status.place})
-
-         else:
-            db.tweets.save({"neutral": ":|", "date": date, "tweet": data,
-                            "tweet_text_neutral": status.text, "location_neutral": status.place}) 
+         else re.search('(:\()', status.text):
+            db.tweets.save({"sad": ":(", "time" time, "date": date, "tweet": data,
+                            "tweet_text_sad": status.text, "location_sad": status.place}) 
 
       except ConnectionFailure, error:
           sys.stderr.write("could not connect to MongoDB: %s" % error)
