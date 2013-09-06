@@ -1,6 +1,6 @@
 import sys
 import json
-import csv
+import csv 
 
 
 csv_file = "mycsv.csv"
@@ -23,14 +23,14 @@ def scores(afinn, text):
               #print total_sent
               for word in text.split():
                 if not scores.get(word,0):
-                        no_score = -0.5
+                        no_score = -0.005
                         final_score = total_sent + no_score
                         sentiment_scores = ( "{} {}".format(word,final_score))
-                        #print sentiment_scores
-                        for row in sentiment_scores: 
+                        print sentiment_scores
+                        '''for row in sentiment_scores: 
                             out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',', quoting=csv.QUOTE_NONE)      
                             out_csv.writerow(row)
-                            out_csv.close()              
+                            out_csv.close()'''              
 
 
 def main():
