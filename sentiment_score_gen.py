@@ -5,6 +5,8 @@ from csv import writer
 import itertools
 
 csv_file = "mycsv.csv"
+out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',') 
+out_csv.writerow(['word', 'final_score'])
 
 
 def scores(afinn, text):             
@@ -27,9 +29,7 @@ def scores(afinn, text):
                         no_score = -0.005
                         final_score = total_sent + no_score
                         sentiment_scores = ( "{},{}".format(word,final_score))  
-                        print sentiment_scores        
-                        out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',') 
-                        out_csv.writerow(['word', 'final_score'])
+                        #print sentiment_scores        
                         out_csv.writerow([word, final_score]) #ONLY SAVING LAST ENTRY, NOT WHOLE LIST
                 
 

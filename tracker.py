@@ -10,7 +10,7 @@ import credentials
 import json
 import jsonpickle
 import logging
-import re
+import re 
 
 #credentials for Twitter OAuth 
 CONSUMER_KEY = credentials.CONSUMER_KEY
