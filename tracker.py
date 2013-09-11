@@ -37,20 +37,22 @@ class StdOutListener(StreamListener):
          #jsonpickle defines complex Python model objects and turns the objects into JSON 
          data = json.loads(jsonpickle.encode(status))
 
+
          #store the whole tweet object by emoticon
          if re.search('(:\))', status.text):
-            db.tweets.save({"smiley": ":)", "time" time, "date": date, "tweet": data, 
-                            "tweet_text_smiley": status.text, "location_smiley": status.place})
+            db.tweets.save({"smiley": ":)", "time": time, "date": date, "tweet": data, 
+                            "tweet_text_smiley": status.text, "location_smiley": status.geo})
             
 
-         else re.search('(:\()', status.text):
-            db.tweets.save({"sad": ":(", "time" time, "date": date, "tweet": data,
-                            "tweet_text_sad": status.text, "location_sad": status.place}) 
+         if re.search('(:\()', status.text):
+            db.tweets.save({"sad": ":(", "time": time, "date": date, "tweet": data,
+                            "tweet_text_sad": status.text, "location_sad": status.geo}) 
+         print data    
 
       except ConnectionFailure, error:
           sys.stderr.write("could not connect to MongoDB: %s" % error)
           sys.exit(1)     
-                
+
 
     #error handling
     def on_error(self, error):
@@ -61,17 +63,7 @@ class StdOutListener(StreamListener):
 total_count = db.tweets.count()
 smiley_count = db.tweets.find({"smiley": ":)"}).count()
 sad_count = db.tweets.find({"sad": ":("}).count()
-
-print
-print "  ========================== Connected to Twitter Streaming API =========================  " 
-print
-print "Previous count in mongo: "
-print
-print "   Total tweets: ", total_count
-print "   Smiley tweets: ", smiley_count
-print "   Sad tweets: ", sad_count
-print
-
+print total_count    
 
     
      

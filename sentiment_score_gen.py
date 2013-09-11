@@ -4,7 +4,7 @@ import csv
 from csv import writer
 import itertools
 
-csv_file = "mycsv.csv"
+csv_file = "training_scores.csv"
 out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',') 
 out_csv.writerow(['word', 'final_score'])
 
