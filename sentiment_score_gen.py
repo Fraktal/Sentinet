@@ -29,8 +29,9 @@ def scores(afinn, text):
                         no_score = -0.005
                         final_score = total_sent + no_score
                         sentiment_scores = ( "{},{}".format(word,final_score))  
-                        #print sentiment_scores        
-                        out_csv.writerow([word, final_score]) #ONLY SAVING LAST ENTRY, NOT WHOLE LIST
+                        
+                        #write scores to csv file        
+                        out_csv.writerow([word, final_score]) 
                 
 
 def main():
