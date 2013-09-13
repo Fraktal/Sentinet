@@ -4,8 +4,9 @@ import csv
 from csv import writer
 import itertools
 
+
 csv_file = "training_scores.csv"
-out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',') 
+out_csv = csv.writer(open(csv_file, 'wb'), delimiter=',')  
 out_csv.writerow(['word', 'final_score'])
 
 
@@ -19,8 +20,8 @@ def scores(afinn, text):
 
     with text as fy:
         for line in fy:
-           tweet = json.loads(line)
-           text = tweet.get('text','').encode('utf-8')
+           tweet = json.loads(line) 
+           text = tweet.get('text','').encode('utf-8') 
            if text:
               total_sent = sum(scores.get(word,0) for word in text.split())
               total_sent
