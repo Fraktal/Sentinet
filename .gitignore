@@ -1,0 +1,6 @@
+*~
+credentials.py
+*.txt
+*.pickle
+*.pyc
+*.csvoutput.txt
