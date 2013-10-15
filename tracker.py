@@ -7,10 +7,9 @@ import sys
 import credentials
 import simplejson as json 
 <<<<<<< HEAD
-import jsonpickle 
+import jsonpickle  
 =======
 import jsonpickle
->>>>>>> 53d46df288142de0a224f2fe23259ff2d0e4b839
 import re 
 
 #credentials for Twitter OAuth 
