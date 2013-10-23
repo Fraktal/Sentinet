@@ -6,11 +6,9 @@ from tweepy import Stream
 import sys
 import credentials
 import simplejson as json 
-<<<<<<< HEAD
-import jsonpickle  
-=======
+import jsonpickle 
 import jsonpickle
-import re 
+import re  
 
 #credentials for Twitter OAuth 
 CONSUMER_KEY = credentials.CONSUMER_KEY

@@ -1,5 +1,5 @@
 import sys
-import json
+import json 
 import csv 
 from csv import writer
 import itertools
@@ -35,10 +35,10 @@ def scores(afinn, text):
                         out_csv.writerow([word, final_score]) 
                 
 
-def main():
+def score_gen():
     tweet_text = open(sys.argv[1]) #use output.txt for first argv for initial testing 
     afinn = open(sys.argv[2]) #use AFINN.txt for second argv
     scores(afinn, tweet_text)
 
 if __name__ == '__main__':
-    main()
+    score_gen()
